@@ -1,0 +1,147 @@
+expo-constants:{
+  part1->5 -> 3 building screen component
+  npm i expo-constants
+
+}
+
+TOUCHABLE :{
+  // all we need to do is wrape any component in touchable to 
+  make that component responsable or you can use any event on that
+ touchableHighlight : wont work unless you set an onpress event 
+    onpress={()=> console.log()}//but we need to make it flexible so
+     we will use prop here
+     onPress={onpress}
+    underlayColor={colors.anycolor} // this will change the highlight color 
+
+ touchableWithoutFeedback
+ touchableOpacity
+}
+
+GESTURE HANDLING:Swipeable->{
+    docs.expo.io-> Api references -> gesture handler
+    
+    expo install react-native-gesture-handler
+
+    import Swipeable from 'react-native-gesture-handler/Swipeable';
+    <Swipeable rederLeftAction/rederRightAction ={//user-Prop function will pass here}>// we are 
+    //using it in a component ....function component ..e.g
+        <Swipeable rederLeftAction/rederRightAction ={()=> <View style=
+            {{here we must give it width otherwise it wont work }}/>}>
+ now we have created another component having red color and trash can icon 
+ so when we render an arrow funcion we do it like ->
+ <Swipeable rederLeftAction/rederRightAction ={<ListItemDeleteAction></ListItemDeleteAction>}>
+  but here if we dont have any argument to pass we can simply pass the reference like ->
+ <Swipeable rederLeftAction/rederRightAction ={ListItemDeleteAction}>
+ another thing ---> <Swipeable key={someUniqueKey}> //in case be needing this
+
+ get icons from lib ->@expo/vector-icons' like this ->
+ this lib is installed by-default
+ import {MaterialCommunityIcons} from '@expo/vector-icons'
+}
+
+HOOKS :{
+   is just a function that allows us to hook into react features in funcion components
+ any function name starts with use is a hook 
+ 
+ in a function component, we have no this, so we can’t assign or read this.state. Instead,
+  we call the useState Hook directly inside our component:
+  Normally, variables “disappear” when the function exits but state variables are preserved by React.
+  What do we pass to useState as an argument? The only argument to the useState() Hook is the initial state.
+  What does useState return? It returns a pair of values: the current state and a function that updates it.
+   This is why we write const [count, setCount] = useState(). This is similar to this.state.count and this.setState
+    in a class, except you get them in a pair. 
+  const [count, setCount] = useState(0);
+  We declare a state variable called count, and set it to 0. React will remember its current value between re-renders,
+   and provide the most recent one to our function. If we want to update the current count, we can call setCount.
+
+   e.g useState and we have to import that ->  import {useState} from "react";
+   //hooks are only available in funcion components cant use them in class components
+   const array = useState(0)// will return an array
+   const count = array[0]// zeroth index will be the state variable 
+   const setCount = array[1] //function for updating a state varibale
+
+  destructure it this way :
+   const [count, setCount]  = useState(0)// will return an array
+  useState(we will pass here our messages array)
+
+  const deleteItem = messages => {} //same as ->
+  const deleteItem(messages){} 
+}
+
+{} --> in js means rendering /object
+
+PULL TO REFRESH:{
+   <flatList 
+   refreshing ={}//we give this a bool state variable 
+   onRefresh={}// pass this a function 
+
+  ---------i put MaterialCommunityIcon instead of MaterialCommunityIcons started giving fkn error
+
+  --create a screen component that will set the screen platform independently
+}
+TextInput:{
+  <TextInput placeholder={"Enter email here"} ->overwritable text 
+  style={//here we can give it anykind of border
+  secureTextEntry={true}// passwords field that shows dots only
+  keyboardType //can set either numeric or alphabet
+  clearButtonMode="always" //as soon as we enter something the clear icon apear //only works in ios
+  -------demo to use ---------//
+ const [x, setx] = useState("");
+
+  return (
+    <View style={{ marginTop: 200, flex: 1 }}>
+      <TextInput
+        onChangeText={(name) => setx(name)}
+        placeholder={"here you can type "}
+        style={{ borderWidth: 1, height: 50 }}
+      />
+      <Text>{x}</Text>
+    </View>
+
+  this is the rest/spray/spread operator ->( ... )
+  function AppTextInput({icon, (otherProps )})// and put otherProps in a single object 
+  //these curlybraces means OBJECT in react --> {}
+ {
+  return (
+    <View>
+      <MaterialCommunityIcon />
+    </View>
+ }
+}
+
+Adding defaultStyle:{
+  ** we can also use another file for similar styles objects repeating, just create a 
+  new file and export the object as default 
+ 
+  ** we can also put an object of another module and with just importing one modeule 
+  we can use another object properties .e.g in styles.js file the bellow code->
+  import colors from './colors'
+  export default { colors , text: { //any properties here  } }
+ .. so in another file we will only need to import the styles,no longer need to imprt colors
+}
+
+**Switch :{
+  export default function App()
+  {
+  const [isNew, setIsNew] = useState(false);
+  return (
+    <Switch 
+    value={isNew}
+    onValueChange={(newValue)=> setIsNew(newValue)}/>
+  )
+  }
+}
+
+Git:{
+  Git Hub Commit and Stage :
+  stage all changes means just like you have a clipboard where you saved all your changes 
+  for short time 
+  then you create a new commit with a message and at the moment you click enter 
+  all the changes from stage are commited    
+  stash
+  stage
+  commit
+  push 
+  Pull
+  clone 
+}
